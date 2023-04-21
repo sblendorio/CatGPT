@@ -75,7 +75,8 @@
                     );
                     $firstRow = true;
                     foreach ($rows as $row) {
-                        if (!$firstRow) print(",");
+                        if (empty($row)) continue;
+                        if (!$firstRow) print(",                    ");
                         print("'");
                         print(str_replace("'", "\'", $row));
                         print("'");
