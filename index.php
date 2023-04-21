@@ -90,7 +90,7 @@
                     parts = element.split(/:/);
                     regex = parts[0];
                     completion = parts[1];
-                    if (userInput.value.match(regex)) {
+                    if (userInput.value.toLowerCase().match(regex.toLowerCase())) {
                         computedResponse = completion;
                         break;
                     }

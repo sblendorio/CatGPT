@@ -1,2 +1,3 @@
 scemo:scemo sarai tu
 stronzo:a soreta
+johnny (.*):forse intendevi Johnny Dorelli
