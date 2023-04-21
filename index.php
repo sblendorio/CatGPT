@@ -76,13 +76,15 @@
                     $firstRow = true;
                     foreach ($rows as $row) {
                         if (empty($row)) continue;
-                        if (!$firstRow) print(",\n                    ");
+                        if (!$firstRow) print(",");
+                        print("\n                    ");
                         print("'");
                         print(str_replace("'", "\'", $row));
                         print("'");
                         $firstRow = false;
                     }
-                ?>];
+                    if (!$firstRow) print("\n");?>
+                ];
                 let userString = userInput.value;
 
                 computedResponse = "";
