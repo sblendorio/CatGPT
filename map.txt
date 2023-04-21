@@ -2,4 +2,4 @@ scemo:scemo sarai tu
 stronzo:a soreta
 johnny (.*):forse intendevi Johnny Dorelli invece di $1
 l'imbuto:'mbbbuti!
-
+Conosci ([a-z]+) ([a-z]+)?:Sì, conosco $1 $2 ed è uno stronzo.
