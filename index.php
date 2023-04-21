@@ -88,10 +88,12 @@
                 for (const element of map) {
                     if (element === "" || !element.includes(":")) continue;
                     parts = element.split(/:/);
-                    regex = parts[0];
+                    regexStr = parts[0];
                     completion = parts[1];
-                    if (userInput.value.toLowerCase().match(regex.toLowerCase())) {
-                        computedResponse = completion;
+                    if (userInput.value.toLowerCase().match(regexStr.toLowerCase())) {
+                        // computedResponse = completion;
+                        var regex = new RegExp("^.*" + regexStr + ".*$", "gi");
+                        computedResponse = userInput.value.replace(regex, completion);
                         break;
                     }
                 }
