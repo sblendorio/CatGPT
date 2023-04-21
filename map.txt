@@ -1,3 +1,5 @@
 scemo:scemo sarai tu
 stronzo:a soreta
 johnny (.*):forse intendevi Johnny Dorelli invece di $1
+l'imbuto:'mbbbuti!
+

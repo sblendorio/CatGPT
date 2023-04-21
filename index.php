@@ -77,7 +77,7 @@
                     foreach ($rows as $row) {
                         if (!$firstRow) print(",");
                         print("'");
-                        print($row);
+                        print(str_replace("'", "\'", $row));
                         print("'");
                         $firstRow = false;
                     }
