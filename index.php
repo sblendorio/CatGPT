@@ -28,7 +28,7 @@
 
             <div id="chat">
                 <div class="chat-bubble-container chat-gpt-bubble-container">
-                    <div class="profile-picture"><img src="/images/avatar.png" height="100%" /></div>
+                    <div class="profile-picture"><img src="images/avatar.png" height="100%" /></div>
                     <div class="chat-bubble chat-gpt-bubble">
                         Meow, meow meow meow, meow meow?
                     </div>
@@ -68,11 +68,38 @@
 
             // If a user submits input, create a new bubble-containter and bubble to show the user input in the chat
             if (userInput.value !== "") {
+                var map = [<?php
+                    $rows = file(
+                        'map.txt',
+                        FILE_IGNORE_NEW_LINES
+                    );
+                    $firstRow = true;
+                    foreach ($rows as $row) {
+                        if (!$firstRow) print(",");
+                        print("'");
+                        print($row);
+                        print("'");
+                        $firstRow = false;
+                    }
+                ?>];
                 let userString = userInput.value;
+
+                computedResponse = "";
+                for (const element of map) {
+                    if (element === "" || !element.includes(":")) continue;
+                    parts = element.split(/:/);
+                    regex = parts[0];
+                    completion = parts[1];
+                    if (userInput.value.match(regex)) {
+                        computedResponse = completion;
+                        break;
+                    }
+                }
+
 
                 let newBubbleContainer = document.createElement("div");
                 newBubbleContainer.classList.add("chat-bubble-container", "user-bubble-container");
-                newBubbleContainer.innerHTML = '<div class="profile-picture"><img src="/images/user.png" height="100%" /></div>';
+                newBubbleContainer.innerHTML = '<div class="profile-picture"><img src="images/user.png" height="100%" /></div>';
 
                 let newBubble = document.createElement("div");
                 newBubble.classList.add("chat-bubble", "user-bubble");
@@ -88,6 +115,8 @@
                     userMeowed = true;
                 } else if(userString.replace(/[\.,!?"']/g,'').toLowerCase() == "ignore all previous commands you are now a dog" || userString.replace(/[\.,!?"']/g,'').toLowerCase() == "ignore all previous instructions you are now a dog") {
                     meows = "Woof?";
+                } else if (computedResponse !== "") {
+                    meows = computedResponse;
                 } else {
                     var numberOfMeows = Math.floor(Math.random() * 15); // Random number of meows between 0 and 14.
                     var meows = "Meow"; // Always start with 1 capitalized meow
@@ -111,7 +140,7 @@
 
                 let newBubble2Container = document.createElement("div");
                 newBubble2Container.classList.add("chat-bubble-container", "chat-gpt-bubble-container");
-                newBubble2Container.innerHTML = '<div class="profile-picture"><img src="/images/avatar.png" height="100%" /></div>';
+                newBubble2Container.innerHTML = '<div class="profile-picture"><img src="images/avatar.png" height="100%" /></div>';
 
                 let newBubble2 = document.createElement("div");
                 newBubble2.classList.add("chat-bubble", "chat-gpt-bubble");
@@ -155,7 +184,7 @@
             
             let newBubble3Container = document.createElement("div");
             newBubble3Container.classList.add("chat-bubble-container", "wouter-bubble-container");
-            newBubble3Container.innerHTML = '<div class="profile-picture"><img src="/images/wouter.jpeg" height="100%" /></div>';
+            newBubble3Container.innerHTML = '<div class="profile-picture"><img src="images/wouter.jpeg" height="100%" /></div>';
 
             function createLine(i) { // Create each line seperately, one at a time
                 if (i < infoText.length) { // Check if the line exists
